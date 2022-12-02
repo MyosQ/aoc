@@ -1,7 +1,7 @@
 import numpy as np
 def first():
     max_sum, sum = 0, 0
-    with open('input_files/input_1.txt') as f:
+    with open('../input_files/input_1.txt') as f:
         lines = f.readlines()
         for line in lines:
             if line == '\n':
@@ -16,7 +16,7 @@ def first():
 def second():
     sum = 0
     top_three_sorted = [0, 0, 0]
-    with open('input_files/input_1.txt') as f:
+    with open('../input_files/input_1.txt') as f:
         lines = f.readlines()
         for line in lines:
             if line == '\n':
