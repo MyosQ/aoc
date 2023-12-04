@@ -4,10 +4,8 @@ def parse_cards(f):
     cards = []
     for line in f:
         card = {}
-        id, nums = line.split(":")
-        winning, numbers = nums.split("|")
-        id, winning, numbers = ' '.join(id.split()), ' '.join(winning.split()), ' '.join(numbers.split())
-        card["id"] = int(id.split(" ")[1])
+        _, nums = line.split(":")
+        winning, numbers = ' '.join(nums.split()).split("|")
         card["winning"] = set([int(n) for n in winning.strip().split(" ")])
         card["numbers"] = set([int(n) for n in numbers.strip().split(" ")])
         cards.append(card)
