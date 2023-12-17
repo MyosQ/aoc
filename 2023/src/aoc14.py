@@ -57,7 +57,6 @@ def second():
         num_cycles = 1_000_000_000
 
         cycles = [{
-            "cycle_num": 0,
             "hash": sha256(grid.tobytes()).hexdigest(),
             "load": get_total_load(grid)
         }]
@@ -66,12 +65,11 @@ def second():
             grid, grid_hash = tilt_cycle(grid)
             
             if grid_hash in [c["hash"] for c in cycles]:
-                cycle_start = [c["cycle_num"] for c in cycles if c["hash"] == grid_hash][0]
+                cycle_start = [i for i, c in enumerate(cycles) if c["hash"] == grid_hash][0]
                 cycle_length = i + 1 - cycle_start
                 break
-            
+
             cycles.append({
-                "cycle_num": i + 1,
                 "hash": grid_hash,
                 "load": get_total_load(grid)
             })
@@ -79,7 +77,6 @@ def second():
         corresponding_cycle = (num_cycles - cycle_start) % cycle_length
         load = cycles[cycle_start + corresponding_cycle]["load"]
         print(f"Total load after {num_cycles:,} cycles:", load)
-
 
 if __name__ == '__main__':
     first()
